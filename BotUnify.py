@@ -1,5 +1,6 @@
 import customtkinter as ctk
 import os
+from dotenv import load_dotenv
 import asyncio
 import threading
 from datetime import datetime
@@ -8,10 +9,13 @@ import discord
 from discord.ext import commands
 from google.cloud import firestore
 
+# Load the variables from the .env file
+load_dotenv()
+
 # --- CLOUD CONTEXT CONFIGURATION ---
 CREDENTIALS_PATH = "firebase_credentials.json"
 SAVINGS_CATEGORIES = ["General", "Rainy Days", "Travel", "Gaming"]
-BOT_TOKEN = "PASTE_YOUR_DISCORD_BOT_TOKEN_HERE"  # <-- Place your Discord bot token here
+BOT_TOKEN = os.getenv("BOT_TOKEN")
 
 # Assign the secret key location globally for the Firebase SDK
 if os.path.exists(CREDENTIALS_PATH):
